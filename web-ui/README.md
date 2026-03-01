@@ -1,17 +1,18 @@
-Run Commands:
+### Run Commands
+
+Install required dependencies:
+
+```bash
 npm install
 npm install express cors chalk
 npm install axios
 
-### open web-ui and server folder in separate terminal:
-for server:
-cmd//
+# Open a terminal for the server
 cd server
-Node server.js
+node server.js
 
-for web-ui(frontend):
+# Open a separate terminal for the frontend
 cd web-ui
 npm start
 
-Made with ❤️ by Suprim Ojha!
-
+##Made with ❤️ by Suprim Ojha
